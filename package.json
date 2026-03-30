@@ -2,12 +2,12 @@
   "name": "nexus_express_frontend_a5",
   "version": "0.1.0",
   "private": true,
-"scripts": {
-  "dev": "next dev -p 5000",
-  "build": "next build",
-  "start": "next start -p 5000",
-  "lint": "next lint"
-},
+  "scripts": {
+    "dev": "next dev -p 5000",
+    "build": "next build",
+    "start": "next start -p 5000",
+    "lint": "next lint"
+  },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.13.11",
     "@tanstack/react-form": "^1.28.6",
@@ -15,6 +15,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cookie": "^1.1.1",
+    "framer-motion": "^12.38.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.7.0",
     "next": "16.2.1",
