@@ -1,12 +1,16 @@
+import Features from "@/components/modules/home/Features";
 import Hero from "@/components/modules/home/Hero";
+import HowItWorks from "@/components/modules/home/HowItWorks";
+import TrustMarquee from "@/components/modules/home/TrustMarquee";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main>
-      {/* Our Professional Hero Section */}
       <Hero />
-      
-      {/* Future sections like Features, Stats, or Services can be added here */}
+      <TrustMarquee />
+      <Features/>
+      <HowItWorks/>
+      {/* Next sections will go here */}
     </main>
   );
 }
