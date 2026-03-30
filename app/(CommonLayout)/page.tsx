@@ -1,3 +1,4 @@
+import Coverage from "@/components/modules/home/Coverage.pipe";
 import Features from "@/components/modules/home/Features";
 import Hero from "@/components/modules/home/Hero";
 import HowItWorks from "@/components/modules/home/HowItWorks";
@@ -10,6 +11,7 @@ export default function HomePage() {
       <TrustMarquee />
       <Features/>
       <HowItWorks/>
+      <Coverage/>
       {/* Next sections will go here */}
     </main>
   );
