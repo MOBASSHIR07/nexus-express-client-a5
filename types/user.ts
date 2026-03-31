@@ -1,5 +1,13 @@
 export type UserRole = "USER" | "RIDER" | "ADMIN";
 export type UserStatus = "ACTIVE" | "BANNED";
+// types/user.ts
+
+
+export interface DashboardLayoutProps {
+  admin: React.ReactNode;
+  rider: React.ReactNode;
+  sender: React.ReactNode;
+}
 
 export interface IUser {
   id: string;
