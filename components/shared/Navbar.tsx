@@ -44,7 +44,7 @@ export default function Navbar({ session }: { session: any }) {
   const handleLogout = async () => {
     const res = await logoutUserAction();
     if (res.success) {
-      router.push("/sign-in");
+      router.push("/");
       router.refresh();
     }
   };

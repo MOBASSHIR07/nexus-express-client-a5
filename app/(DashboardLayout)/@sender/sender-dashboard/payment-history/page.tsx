@@ -52,7 +52,7 @@ export default async function Page() {
                       {item.parcel?.title ?? "Parcel"}
                       {item.parcel?.trackingCode ? ` — ${item.parcel.trackingCode}` : ""}
                     </td>
-                    <td className="px-6 py-5 text-sm font-black text-[#00F5A0]">{item.amount} {item.currency ?? "৳"}</td>
+                    <td className="px-6 py-5 text-sm font-black text-[#00F5A0]">{item.amount} {item.currency ?? "$"}</td>
                     <td className="px-6 py-5">
                       <Badge className="rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.3em] font-black text-white/90 bg-white/10">
                         {item.status ?? "Paid"}

@@ -34,6 +34,7 @@ export function AppSidebar({ role }: { role: string }) {
       { title: "Book A Parcel", url: "/sender-dashboard/book-parcel", icon: BookmarkPlus },
       { title: "My Parcels", url: "/sender-dashboard/my-parcels", icon: History },
       { title: "Payments", url: "/sender-dashboard/payment-history", icon: ShoppingCart },
+      { title: "Apply Rider", url: "/sender-dashboard/apply-rider", icon: Truck },
     ]
   };
 
@@ -42,14 +43,16 @@ export function AppSidebar({ role }: { role: string }) {
   return (
     <Sidebar className="border-r border-white/5 bg-[#06060b]">
       <SidebarHeader className="p-6 border-b border-white/5">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#00F5A0] to-[#00D9F5]">
-            <Zap className="h-5 w-5 text-[#06060b] fill-current" />
+        <Link href="/" className="block">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#00F5A0] to-[#00D9F5]">
+              <Zap className="h-5 w-5 text-[#06060b] fill-current" />
+            </div>
+            <span className="font-black tracking-tighter text-white text-xl uppercase italic">
+              NEXUS
+            </span>
           </div>
-          <span className="font-black tracking-tighter text-white text-xl uppercase italic">
-            NEXUS
-          </span>
-        </div>
+        </Link>
       </SidebarHeader>
 
       <SidebarContent className="px-3 pt-6">

@@ -31,7 +31,7 @@ export default function SignInPage() {
       }
 
       toast.success("Welcome back!", { id: toastId });
-      router.push("/");
+      router.push("/dashboard");
       router.refresh();
     },
   });
