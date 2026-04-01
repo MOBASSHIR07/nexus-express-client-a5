@@ -11,3 +11,13 @@ export const applyForRiderAction = async (payload: ApplyRiderPayload) => {
     return { success: false, message: "Unable to submit rider application." };
   }
 };
+
+export const getRiderDashboardAction = async () => {
+  try {
+    const response = await riderService.getRiderDashboard();
+    return response;
+  } catch (error) {
+    console.error("RIDER_DASHBOARD_ERROR:", error);
+    return { success: false, message: "Unable to load rider dashboard." };
+  }
+};

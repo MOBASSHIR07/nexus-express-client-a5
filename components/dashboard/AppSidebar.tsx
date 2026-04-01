@@ -26,6 +26,7 @@ export function AppSidebar({ role }: { role: string }) {
       { title: "Withdrawals", url: "/admin-dashboard/withdraw-requests", icon: DollarSign },
     ],
     RIDER: [
+      { title: "Statistics", url: "/rider-dashboard", icon: LayoutDashboard },
       { title: "Assigned Parcels", url: "/rider-dashboard/assigned-parcels", icon: Package },
       { title: "Active Deliveries", url: "/rider-dashboard/active-deliveries", icon: Truck },
       { title: "My Earnings", url: "/rider-dashboard/my-earnings", icon: DollarSign },
