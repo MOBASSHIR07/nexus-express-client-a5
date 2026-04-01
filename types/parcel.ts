@@ -37,7 +37,7 @@ export interface IParcel {
   receiverName: string;
   receiverPhone: string;
   deliveryAddress: string;
-  deliveryStatus: "PENDING" | "PICKED_UP" | "IN_TRANSIT" | "DELIVERED" | "CANCELLED";
+  deliveryStatus: "PENDING" | "RIDER_ASSIGNED" | "PICKED_UP" | "IN_TRANSIT" | "DELIVERED" | "CANCELLED";
   paymentStatus: "PAID" | "UNPAID";
   createdAt: string;
   updatedAt: string;
