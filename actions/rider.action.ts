@@ -63,3 +63,27 @@ export const updateParcelStatusAction = async (formData: FormData) => {
     return { success: false, message: "Unable to update parcel status." };
   }
 };
+
+
+
+export const createWithdrawAction = async (formData: FormData) => {
+  const amount = Number(formData.get("amount"));
+  const method = formData.get("method") as string;
+  const accountNumber = formData.get("accountNumber") as string;
+
+  if (!amount || !method || !accountNumber) {
+    return { success: false, message: "All fields are required." };
+  }
+
+  try {
+    const res = await riderService.createWithdrawRequest({ amount, method, accountNumber });
+    if (res.success) {
+      revalidatePath("/rider-dashboard");
+      revalidatePath("/rider-dashboard/withdraw");
+      return { success: true, message: "Withdraw request transmitted." };
+    }
+    return { success: false, message: res.message || "Request failed." };
+  } catch (error) {
+    return { success: false, message: "Nexus Network Error." };
+  }
+};

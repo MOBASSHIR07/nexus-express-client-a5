@@ -100,4 +100,18 @@ updateParcelStatus: async (payload: UpdateStatusPayload) => {
     });
     return res.json();
   },
+
+  createWithdrawRequest: async (payload: { amount: number; method: string; accountNumber: string }) => {
+    const token = (await cookies()).get("auth_session")?.value;
+
+    const res = await fetch(`${env.BACKEND_URL}/api/rider/withdraw-request`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `__Secure-better-auth.session_token=${token}`,
+      },
+      body: JSON.stringify(payload),
+    });
+    return res.json();
+  },
 };
