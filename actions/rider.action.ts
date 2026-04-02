@@ -90,12 +90,20 @@ export const createWithdrawAction = async (formData: FormData) => {
 };
 
 
+
+
+
 export const getMyParcelsAction = async (query: Record<string, any>) => {
   try {
+   
     const result = await riderService.getAssignedParcels(query);
+    
+  
+    console.log("RIDER_PARCEL_DATA:", result); 
+    
     return result;
   } catch (error) {
     console.error("RIDER_PARCEL_FETCH_ERROR:", error);
-    return { success: false, data: [] };
+    return { success: false, data: [], message: "Network Error" };
   }
 };

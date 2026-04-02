@@ -56,7 +56,7 @@ export const riderService = {
     }
 
     const res = await fetch(`${env.BACKEND_URL}/api/rider/respond-parcel`, {
-      method: "POST",
+      method: "PATCH",
       headers,
       body: JSON.stringify(payload),
     });
@@ -64,7 +64,7 @@ export const riderService = {
     return res.json();
   },
 
-// service/rider.service.ts
+
 updateParcelStatus: async (payload: UpdateStatusPayload) => {
   const cookieStore = await cookies();
   const token = cookieStore.get("auth_session")?.value;
@@ -101,18 +101,30 @@ updateParcelStatus: async (payload: UpdateStatusPayload) => {
     });
     return res.json();
   },
-   getAssignedParcels: async (query: Record<string, any>) => {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("auth_session")?.value;
-  const params = new URLSearchParams(query);
 
+
+getAssignedParcels: async (query: Record<string, any>) => {
+  const cookieStore = await cookies();
+  
  
+  const token = 
+    cookieStore.get("__Secure-better-auth.session_token")?.value ||
+    cookieStore.get("better-auth.session_token")?.value ||
+    cookieStore.get("auth_session")?.value;
+
+  const params = new URLSearchParams(query);
+  
+
   const res = await fetch(`${env.BACKEND_URL}/api/rider/my-parcels?${params.toString()}`, {
+    method: "GET",
     headers: {
-      Cookie: `__Secure-better-auth.session_token=${token}`,
+      "Content-Type": "application/json",
+    
+      "Cookie": token ? `better-auth.session_token=${token}; __Secure-better-auth.session_token=${token}` : "",
     },
-    next: { revalidate: 0 }
+    cache: 'no-store', 
   });
+
   return res.json();
 },
 
