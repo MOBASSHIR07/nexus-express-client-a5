@@ -2,7 +2,7 @@
 
 import { useForm } from "@tanstack/react-form";
 import * as z from "zod";
-import { Mail, Lock, Loader2, ArrowRight } from "lucide-react";
+import { Mail, Lock, Loader2, ArrowRight, Globe } from "lucide-react"; // Globe আইকন যোগ করা হয়েছে
 import Link from "next/link";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -10,6 +10,7 @@ import { signInUserAction } from "@/actions/auth.action";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { authClient } from "@/lib/auth-client"; // আপনার নতুন বানানো authClient ইম্পোর্ট করুন
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -18,6 +19,19 @@ const loginSchema = z.object({
 
 export default function SignInPage() {
   const router = useRouter();
+
+  // ✅ গুগল লগইন হ্যান্ডলার
+  const handleGoogleLogin = async () => {
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/dashboard", // লগইন শেষে যেখানে যাবে
+      });
+    } catch (error) {
+      console.error("Google Login Error:", error);
+      toast.error("Google login failed!");
+    }
+  };
 
   const form = useForm({
     defaultValues: { email: "", password: "" },
@@ -48,6 +62,27 @@ export default function SignInPage() {
           <p className="text-white/40 text-sm font-medium uppercase tracking-widest">
             Sign In
           </p>
+        </div>
+
+        {/* ✅ Google Login Button Added Here */}
+        <Button
+          type="button"
+          onClick={handleGoogleLogin}
+          variant="outline"
+          className="w-full h-14 bg-white/5 border-white/10 rounded-2xl font-bold text-white hover:bg-white/10 active:scale-95 transition-all flex items-center justify-center gap-3 mb-6"
+        >
+          <Globe size={18} className="text-[#00F5A0]" />
+          <span className="uppercase text-[10px] tracking-widest font-black">Continue with Google</span>
+        </Button>
+
+        {/* Divider */}
+        <div className="relative mb-8">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t border-white/5"></span>
+          </div>
+          <div className="relative flex justify-center text-[10px] uppercase">
+            <span className="bg-[#0b0b14] px-4 text-white/20 font-black tracking-widest">Or login with email</span>
+          </div>
         </div>
 
         <form
@@ -81,7 +116,6 @@ export default function SignInPage() {
                     className="h-14 bg-white/5 border-white/10 rounded-2xl pl-12 text-white focus:border-[#00F5A0]/50 transition-all font-medium"
                   />
                 </div>
-                {/* ✅ Fix: .message property */}
                 {field.state.meta.errors.length > 0 && (
                   <p className="text-[10px] font-bold text-red-500 ml-2 uppercase tracking-tighter">
                     {field.state.meta.errors[0]?.message ??
