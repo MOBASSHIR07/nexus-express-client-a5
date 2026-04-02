@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { env } from "@/env";
 import { cookies } from "next/headers";
 import { ParcelCategory } from "@/types/parcel"; 
@@ -68,6 +69,7 @@ export const parcelService = {
     });
     return res.json();
   },
+ 
 
   createPaymentSession: async (parcelId: string) => {
     const cookieStore = await cookies();

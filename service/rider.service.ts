@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { env } from "@/env";
 import { cookies } from "next/headers";
 
@@ -100,6 +101,20 @@ updateParcelStatus: async (payload: UpdateStatusPayload) => {
     });
     return res.json();
   },
+   getAssignedParcels: async (query: Record<string, any>) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("auth_session")?.value;
+  const params = new URLSearchParams(query);
+
+ 
+  const res = await fetch(`${env.BACKEND_URL}/api/rider/my-parcels?${params.toString()}`, {
+    headers: {
+      Cookie: `__Secure-better-auth.session_token=${token}`,
+    },
+    next: { revalidate: 0 }
+  });
+  return res.json();
+},
 
   createWithdrawRequest: async (payload: { amount: number; method: string; accountNumber: string }) => {
     const token = (await cookies()).get("auth_session")?.value;
