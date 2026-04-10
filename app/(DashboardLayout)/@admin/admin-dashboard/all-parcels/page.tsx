@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { adminService } from "@/service/admin.service";
 import { assignRiderAction } from "@/actions/admin.action";
 import { 
@@ -83,7 +83,7 @@ export default async function AllParcelsPage() {
                       {parcel.title}
                     </h3>
                     <p className="text-[10px] text-white/30 uppercase font-bold tracking-[0.2em] mt-1">
-                      {parcel.category} • {parcel.weight} KG • ৳{parcel.price}
+                      {parcel.category} • {parcel.weight} KG • ${parcel.price}
                     </p>
                   </div>
                 </div>

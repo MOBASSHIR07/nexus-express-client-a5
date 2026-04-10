@@ -23,7 +23,7 @@ export default function Footer() {
               NEXUS <span className="text-[#00F5A0]">EXPRESS</span>
             </h2>
             <p className="text-white/40 text-sm leading-relaxed font-medium">
-              বাংলাদেশের প্রতিটি প্রান্তে দ্রুত ও নিরাপদ ডেলিভারি সেবা নিশ্চিত করাই আমাদের একমাত্র লক্ষ্য। আপনার ভরসা, আমাদের প্রেরণা।
+              Delivering fast, reliable, and secure parcels to every corner of Bangladesh — that's our only mission. Your trust is our greatest motivation.
             </p>
             
             <div className="flex gap-4">
@@ -61,7 +61,7 @@ export default function Footer() {
             <ul className="space-y-5 text-sm text-white/40 font-bold">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-[#00F5A0] shrink-0" />
-                <span>বগুড়া সদর, রাজশাহী বিভাগ, বাংলাদেশ</span>
+                <span>Bogura Sadar, Rajshahi Division, Bangladesh</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-[#00F5A0] shrink-0" />
@@ -81,6 +81,7 @@ export default function Footer() {
                 type="email" 
                 placeholder="Email Address" 
                 className="w-full h-14 pl-5 pr-14 bg-white/5 border border-white/10 rounded-2xl text-white text-sm outline-none focus:border-[#00F5A0]/50 transition-all font-medium"
+                suppressHydrationWarning
               />
               <button className="absolute right-2 top-2 w-10 h-10 rounded-xl bg-gradient-to-r from-[#00F5A0] to-[#00D9F5] flex items-center justify-center text-[#06060b]">
                 <Send size={18} />

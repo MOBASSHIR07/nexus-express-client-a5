@@ -264,6 +264,7 @@ export default function WithdrawPage() {
                             ? "border-emerald-500/50 focus:border-emerald-500" 
                             : "border-white/10 focus:border-emerald-500/30"
                         }`}
+                      suppressHydrationWarning
                     />
                     {isValidAmount && formData.amount && (
                       <CheckCircle2 className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-400" />
@@ -333,6 +334,7 @@ export default function WithdrawPage() {
                           ? "border-red-500/50 focus:border-red-500" 
                           : "border-white/10 focus:border-emerald-500/30"
                         }`}
+                      suppressHydrationWarning
                     />
                   </div>
                   {touched.accountNumber && errors.accountNumber && (

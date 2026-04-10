@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getMyParcelsAction } from "@/actions/parcel.action";
 import { Package, MapPin, ChevronLeft, ChevronRight, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -90,7 +90,7 @@ export default async function MyParcelsPage({
                   </td>
 
                   <td className="p-8 text-xl font-black italic text-[#00F5A0]">
-                    ৳{parcel.price}
+                    ${parcel.price}
                   </td>
 
                   <td className="p-8 text-right">

@@ -34,16 +34,16 @@ export default function BookParcelPage() {
   const [price, setPrice] = useState(200);
   const [error, setError] = useState<string | null>(null);
 
-  const { 
-    register, 
-    handleSubmit, 
-    watch, 
+  const {
+    register,
+    handleSubmit,
+    watch,
     formState: { errors },
     reset
   } = useForm<BookParcelValues>({
     resolver: zodResolver(bookParcelSchema),
-    defaultValues: { 
-      category: "PARCEL", 
+    defaultValues: {
+      category: "PARCEL",
       weight: 1,
       title: "",
       senderRegion: "",
@@ -87,7 +87,7 @@ export default function BookParcelPage() {
     // Clear previous error
     setError(null);
     setIsSubmitting(true);
-    
+
     // Show loading toast
     const loadingToast = toast.loading("Processing your shipment request...");
 
@@ -110,9 +110,9 @@ export default function BookParcelPage() {
       };
 
       console.log("Sending payload:", finalPayload);
-      
+
       const result = await createParcelAction(finalPayload as any);
-      
+
       console.log("API Response:", result);
 
       // Dismiss loading toast
@@ -122,7 +122,7 @@ export default function BookParcelPage() {
         toast.success("Shipment created! Redirecting to payment...", {
           duration: 3000,
         });
-        
+
         // Small delay before redirect for better UX
         setTimeout(() => {
           window.location.href = result.data.paymentUrl;
@@ -137,7 +137,7 @@ export default function BookParcelPage() {
     } catch (error: any) {
       console.error("Submission Error:", error);
       toast.dismiss(loadingToast);
-      
+
       const errorMessage = error?.message || "Network error! Please check your connection and try again.";
       toast.error(errorMessage);
       setError(errorMessage);
@@ -148,7 +148,7 @@ export default function BookParcelPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black">
       <div className="max-w-6xl mx-auto p-6 md:p-10 space-y-8">
-        
+
         {/* Header Section */}
         <div className="space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
@@ -179,7 +179,7 @@ export default function BookParcelPage() {
         <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Column - Form Fields */}
           <div className="lg:col-span-8 space-y-6">
-            
+
             {/* Item Specifications */}
             <div className="rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-6 space-y-5">
               <div className="flex items-center gap-2">
@@ -188,17 +188,18 @@ export default function BookParcelPage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <input 
-                    {...register("title")} 
+                  <input
+                    {...register("title")}
                     placeholder="Parcel Title (e.g., Documents, Electronics)"
                     className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-emerald-500/50 transition-all"
+                    suppressHydrationWarning
                   />
                   {errors.title && <p className="text-xs text-red-400 mt-1">{errors.title.message}</p>}
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <select 
-                      {...register("category")} 
+                    <select
+                      {...register("category")}
                       className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-emerald-500/50"
                     >
                       <option value="PARCEL">📦 PARCEL</option>
@@ -206,12 +207,13 @@ export default function BookParcelPage() {
                     </select>
                   </div>
                   <div>
-                    <input 
-                      type="number" 
+                    <input
+                      type="number"
                       step="0.5"
-                      {...register("weight", { valueAsNumber: true })} 
+                      {...register("weight", { valueAsNumber: true })}
                       placeholder="Weight (KG)"
                       className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-emerald-500/50"
+                      suppressHydrationWarning
                     />
                     {errors.weight && <p className="text-xs text-red-400 mt-1">{errors.weight.message}</p>}
                   </div>
@@ -227,8 +229,8 @@ export default function BookParcelPage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <select 
-                    {...register("senderRegion")} 
+                  <select
+                    {...register("senderRegion")}
                     className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-emerald-500/50"
                   >
                     <option value="">Select Region</option>
@@ -237,8 +239,8 @@ export default function BookParcelPage() {
                   {errors.senderRegion && <p className="text-xs text-red-400 mt-1">{errors.senderRegion.message}</p>}
                 </div>
                 <div>
-                  <select 
-                    {...register("senderDistrict")} 
+                  <select
+                    {...register("senderDistrict")}
                     disabled={!sRegion}
                     className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none disabled:opacity-50"
                   >
@@ -248,8 +250,8 @@ export default function BookParcelPage() {
                   {errors.senderDistrict && <p className="text-xs text-red-400 mt-1">{errors.senderDistrict.message}</p>}
                 </div>
                 <div>
-                  <select 
-                    {...register("senderArea")} 
+                  <select
+                    {...register("senderArea")}
                     disabled={!sDistrict}
                     className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none disabled:opacity-50"
                   >
@@ -260,11 +262,12 @@ export default function BookParcelPage() {
                 </div>
               </div>
               <div>
-                <textarea 
-                  {...register("senderAddress")} 
+                <textarea
+                  {...register("senderAddress")}
                   placeholder="Detailed pickup address (building, floor, road, etc.)"
                   rows={2}
                   className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-emerald-500/50 resize-none"
+                  suppressHydrationWarning
                 />
                 {errors.senderAddress && <p className="text-xs text-red-400 mt-1">{errors.senderAddress.message}</p>}
               </div>
@@ -278,26 +281,28 @@ export default function BookParcelPage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <input 
-                    {...register("receiverName")} 
+                  <input
+                    {...register("receiverName")}
                     placeholder="Receiver Full Name"
                     className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-emerald-500/50"
+                    suppressHydrationWarning
                   />
                   {errors.receiverName && <p className="text-xs text-red-400 mt-1">{errors.receiverName.message}</p>}
                 </div>
                 <div>
-                  <input 
-                    {...register("receiverPhone")} 
+                  <input
+                    {...register("receiverPhone")}
                     placeholder="Receiver Phone Number"
                     className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-emerald-500/50"
+                    suppressHydrationWarning
                   />
                   {errors.receiverPhone && <p className="text-xs text-red-400 mt-1">{errors.receiverPhone.message}</p>}
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <select 
-                    {...register("receiverRegion")} 
+                  <select
+                    {...register("receiverRegion")}
                     className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-emerald-500/50"
                   >
                     <option value="">Select Region</option>
@@ -306,8 +311,8 @@ export default function BookParcelPage() {
                   {errors.receiverRegion && <p className="text-xs text-red-400 mt-1">{errors.receiverRegion.message}</p>}
                 </div>
                 <div>
-                  <select 
-                    {...register("receiverDistrict")} 
+                  <select
+                    {...register("receiverDistrict")}
                     disabled={!rRegion}
                     className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none disabled:opacity-50"
                   >
@@ -317,8 +322,8 @@ export default function BookParcelPage() {
                   {errors.receiverDistrict && <p className="text-xs text-red-400 mt-1">{errors.receiverDistrict.message}</p>}
                 </div>
                 <div>
-                  <select 
-                    {...register("receiverArea")} 
+                  <select
+                    {...register("receiverArea")}
                     disabled={!rDistrict}
                     className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none disabled:opacity-50"
                   >
@@ -329,11 +334,12 @@ export default function BookParcelPage() {
                 </div>
               </div>
               <div>
-                <textarea 
-                  {...register("receiverAddress")} 
+                <textarea
+                  {...register("receiverAddress")}
                   placeholder="Detailed delivery address (building, floor, road, etc.)"
                   rows={2}
                   className="w-full bg-gray-900/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-emerald-500/50 resize-none"
+                  suppressHydrationWarning
                 />
                 {errors.receiverAddress && <p className="text-xs text-red-400 mt-1">{errors.receiverAddress.message}</p>}
               </div>
@@ -346,7 +352,7 @@ export default function BookParcelPage() {
               <div className="text-center">
                 <Calculator className="w-8 h-8 text-emerald-400 mx-auto mb-3" />
                 <p className="text-[10px] font-mono text-gray-500 uppercase tracking-wider">Estimated Cost</p>
-                <h2 className="text-5xl font-bold text-white mt-2">৳{price}</h2>
+                <h2 className="text-5xl font-bold text-white mt-2">${price}</h2>
               </div>
 
               <div className="space-y-3 pt-4 border-t border-white/10">
@@ -364,8 +370,8 @@ export default function BookParcelPage() {
                 </div>
               </div>
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 disabled={isSubmitting}
                 className="w-full h-12 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50"
               >

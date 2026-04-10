@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { adminService } from "@/service/admin.service";
 import { approveRiderAction } from "@/actions/admin.action";
 import { 
@@ -120,7 +120,7 @@ export default async function RiderApplicationsPage() {
               </div>
               <span className="text-xs text-gray-500 uppercase tracking-wider">Total Earnings</span>
             </div>
-            <p className="text-3xl font-bold text-white">৳{totalEarnings.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-white">${totalEarnings.toLocaleString()}</p>
             <p className="text-xs text-gray-500 mt-1">Across all riders</p>
           </div>
 
@@ -250,7 +250,7 @@ export default async function RiderApplicationsPage() {
                           <DollarSign className="w-3 h-3" /> Total Earned
                         </p>
                         <p className="text-sm font-semibold text-emerald-400">
-                          ৳{totalEarned.toLocaleString()}
+                          ${totalEarned.toLocaleString()}
                         </p>
                       </div>
                       
@@ -259,7 +259,7 @@ export default async function RiderApplicationsPage() {
                           <Wallet className="w-3 h-3" /> Withdrawable
                         </p>
                         <p className="text-sm font-semibold text-blue-400">
-                          ৳{withdrawableBalance.toLocaleString()}
+                          ${withdrawableBalance.toLocaleString()}
                         </p>
                       </div>
                     </div>
@@ -311,7 +311,7 @@ export default async function RiderApplicationsPage() {
                         <div className="flex items-center gap-2">
                           <TrendingUp className="w-4 h-4 text-emerald-400" />
                           <p className="text-xs text-emerald-400">
-                            Top performer with ৳{totalEarned.toLocaleString()} total earnings
+                            Top performer with ${totalEarned.toLocaleString()} total earnings
                           </p>
                         </div>
                       </div>

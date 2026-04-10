@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { ClipboardEdit, Truck, CheckCircle2 } from "lucide-react";
@@ -8,21 +8,21 @@ const steps = [
   {
     number: "01",
     title: "Create a Request",
-    description: "আপনার ড্যাশবোর্ড থেকে পার্সেল ডিটেইলস এবং পিকআপ লোকেশন সেট করুন।",
+    description: "Set your parcel details and pickup location directly from your dashboard.",
     icon: <ClipboardEdit size={32} />,
     alignment: "lg:mt-0",
   },
   {
     number: "02",
     title: "Rider Pickup",
-    description: "নিকটস্থ রাইডার আপনার লোকেশনে এসে পার্সেলটি রিসিভ করে নেবে।",
+    description: "The nearest rider will come to your location and pick up the parcel.",
     icon: <Truck size={32} />,
     alignment: "lg:mt-28",
   },
   {
     number: "03",
     title: "Fast Delivery",
-    description: "আমাদের স্মার্ট লজিস্টিকস নেটওয়ার্কে গন্তব্যে পৌঁছে যাবে আপনার পার্সেল।",
+    description: "Your parcel is delivered to the destination through our smart logistics network.",
     icon: <CheckCircle2 size={32} />,
     alignment: "lg:mt-0",
   },

@@ -1,5 +1,7 @@
-"use client";
+﻿"use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Package, PlayCircle, CheckCircle } from "lucide-react";
@@ -9,6 +11,16 @@ export default function Hero() {
     initial: { opacity: 0, y: 40 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+  };
+
+  const [trackingCode, setTrackingCode] = useState("");
+  const router = useRouter();
+
+  const handleTrack = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (trackingCode.trim()) {
+      router.push(`/track/${trackingCode.trim()}`);
+    }
   };
 
   return (
@@ -61,7 +73,7 @@ export default function Hero() {
             transition={{ delay: 0.3 }}
             className="text-lg md:text-xl text-white/50 max-w-lg mx-auto lg:mx-0 mb-8 font-light leading-relaxed"
           >
-            আপনার পার্সেল, আমাদের দায়িত্ব — সারাদেশে দ্রুত ও নিরাপদ ডেলিভারি সেবা
+            Your parcel, our responsibility — fast and secure delivery across the country.
           </motion.p>
 
           <motion.div 
@@ -75,6 +87,32 @@ export default function Hero() {
             <Button variant="outline" className="h-14 px-8 rounded-2xl font-semibold border-white/10 hover:bg-white/5 text-white transition-all">
               <PlayCircle className="mr-2 h-5 w-5 text-[#00F5A0]" /> Watch Demo
             </Button>
+          </motion.div>
+
+          {/* Quick Tracking Widget */}
+          <motion.div
+            {...fadeInUp}
+            transition={{ delay: 0.45 }}
+            className="mt-10 max-w-md mx-auto lg:mx-0"
+          >
+            <form onSubmit={handleTrack} className="relative group">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00F5A0] to-[#00D9F5] opacity-20 blur-lg group-focus-within:opacity-40 transition-opacity rounded-2xl" />
+              <div className="relative flex bg-[#0c0c14] rounded-2xl border border-white/10 overflow-hidden focus-within:border-[#00F5A0]/50 transition-all">
+                <input 
+                  type="text" 
+                  value={trackingCode}
+                  onChange={(e) => setTrackingCode(e.target.value)}
+                  placeholder="Enter Tracking ID..."
+                  className="w-full h-14 bg-transparent pl-5 pr-4 text-white text-sm outline-none placeholder:text-white/10 font-mono tracking-wider"
+                />
+                <button 
+                  type="submit"
+                  className="h-14 px-6 bg-white/5 hover:bg-white/10 text-[#00F5A0] font-black uppercase text-[10px] tracking-widest border-l border-white/10 transition-all"
+                >
+                  Track
+                </button>
+              </div>
+            </form>
           </motion.div>
 
           {/* Stats Bar */}

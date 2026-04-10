@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useForm } from "@tanstack/react-form";
 import * as z from "zod";
@@ -10,7 +10,7 @@ import { signInUserAction } from "@/actions/auth.action";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { authClient } from "@/lib/auth-client"; // আপনার নতুন বানানো authClient ইম্পোর্ট করুন
+import { authClient } from "@/lib/auth-client"; // your auth client
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -20,12 +20,12 @@ const loginSchema = z.object({
 export default function SignInPage() {
   const router = useRouter();
 
-  // ✅ গুগল লগইন হ্যান্ডলার
+  // Google login handler
   const handleGoogleLogin = async () => {
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/dashboard", // লগইন শেষে যেখানে যাবে
+        callbackURL: "/dashboard", // redirect after login
       });
     } catch (error) {
       console.error("Google Login Error:", error);

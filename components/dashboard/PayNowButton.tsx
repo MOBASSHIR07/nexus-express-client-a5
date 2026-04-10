@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ export default function PayNowButton({ parcelId, price }: { parcelId: string; pr
       disabled={loading}
       className="h-12 bg-white text-[#06060b] hover:bg-[#00F5A0] font-black text-[10px] uppercase rounded-2xl px-6 transition-all shadow-lg"
     >
-      {loading ? <Loader2 className="animate-spin" size={14} /> : <><CreditCard size={14} className="mr-2" /> Pay Now (৳{price})</>}
+      {loading ? <Loader2 className="animate-spin" size={14} /> : <><CreditCard size={14} className="mr-2" /> Pay Now (${price})</>}
     </Button>
   );
 }

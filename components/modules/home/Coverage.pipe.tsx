@@ -113,6 +113,7 @@ export default function CoverageMap() {
                 onFocus={() => setShowSuggestions(true)}
                 onChange={(e) => setQuery(e.target.value)}
                 className="w-full h-14 pl-12 pr-4 rounded-2xl bg-white/5 border border-white/10 text-white outline-none focus:border-[#00F5A0]/50"
+                suppressHydrationWarning
               />
               {showSuggestions && suggestions.length > 0 && (
                 <ul className="absolute top-full mt-2 left-0 right-0 bg-[#10101e] border border-white/10 rounded-2xl overflow-hidden shadow-2xl">

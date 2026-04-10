@@ -9,21 +9,21 @@ const reviews = [
     name: "Sadman Sakib",
     role: "Merchant, Dhaka",
     image: "https://i.pravatar.cc/150?u=1",
-    review: "Nexus Express-এর সার্ভিস এক কথায় অসাধারণ। বিশেষ করে তাদের ট্র্যাকিং সিস্টেমটা অনেক একুরেট।",
+    review: "The service from Nexus Express is simply outstanding. Their tracking system is incredibly accurate and reliable.",
     stars: 5
   },
   {
     name: "Raisa Islam",
     role: "Online Entrepreneur",
     image: "https://i.pravatar.cc/150?u=2",
-    review: "বগুড়া থেকে ঢাকায় পার্সেল পাঠাতে এখন আর চিন্তা করতে হয় না। রাইডাররা খুব প্রফেশনাল।",
+    review: "Sending parcels from Bogura to Dhaka is now completely worry-free. The riders are extremely professional.",
     stars: 5
   },
   {
     name: "Ariful Hoque",
     role: "Regular Customer",
     image: "https://i.pravatar.cc/150?u=3",
-    review: "খুবই ফাস্ট ডেলিভারি! ২৪ ঘণ্টার মধ্যে আমার পার্সেল হাতে পেয়েছি। হাইলি রিকমেন্ডেড!",
+    review: "Super fast delivery! I received my parcel within 24 hours. Highly recommended for anyone who needs reliable shipping!",
     stars: 4
   }
 ];
@@ -68,7 +68,7 @@ export default function Testimonials() {
               
               <div className="flex items-center gap-4 mb-6">
                 <div className="relative w-14 h-14 rounded-2xl overflow-hidden border-2 border-[#00F5A0]/20">
-                  <Image src={item.image} alt={item.name} fill className="object-cover" />
+                  <Image src={item.image} alt={item.name} fill sizes="56px" className="object-cover" />
                 </div>
                 <div>
                   <h4 className="text-lg font-black text-white">{item.name}</h4>
@@ -93,3 +93,4 @@ export default function Testimonials() {
     </section>
   );
 }
+

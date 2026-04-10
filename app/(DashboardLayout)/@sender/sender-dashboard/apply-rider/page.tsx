@@ -86,6 +86,7 @@ export default function ApplyRiderPage() {
                   placeholder="01XXXXXXXXX"
                   {...register("rider.phone")}
                   className="w-full bg-transparent outline-none text-white placeholder:text-white/30"
+                  suppressHydrationWarning
                 />
               </div>
               {errors.rider?.phone && <p className="text-xs text-red-400">{errors.rider.phone.message}</p>}
@@ -101,6 +102,7 @@ export default function ApplyRiderPage() {
                     placeholder="Example: Dhaka"
                     {...register("rider.district")}
                     className="w-full bg-transparent outline-none text-white placeholder:text-white/30"
+                    suppressHydrationWarning
                   />
                 </div>
                 {errors.rider?.district && <p className="text-xs text-red-400">{errors.rider.district.message}</p>}
@@ -115,6 +117,7 @@ export default function ApplyRiderPage() {
                     placeholder="Example: Dhaka Division"
                     {...register("rider.region")}
                     className="w-full bg-transparent outline-none text-white placeholder:text-white/30"
+                    suppressHydrationWarning
                   />
                 </div>
                 {errors.rider?.region && <p className="text-xs text-red-400">{errors.rider.region.message}</p>}
@@ -130,6 +133,7 @@ export default function ApplyRiderPage() {
                   placeholder="Motorbike, Van, Pickup..."
                   {...register("rider.vehicle")}
                   className="w-full bg-transparent outline-none text-white placeholder:text-white/30"
+                  suppressHydrationWarning
                 />
               </div>
               {errors.rider?.vehicle && <p className="text-xs text-red-400">{errors.rider.vehicle.message}</p>}

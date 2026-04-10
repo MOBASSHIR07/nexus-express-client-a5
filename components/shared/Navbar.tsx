@@ -9,10 +9,11 @@ import { Button } from "@/components/ui/button";
 import { logoutUserAction } from "@/actions/auth.action";
 
 const navLinks = [
-  { label: "Home", href: "/" },
+  { label: "Home", href: "/#hero" },
   { label: "Track Parcel", href: "/track" },
-  { label: "Services", href: "/services" },
-  { label: "Coverage", href: "/coverage" },
+  { label: "Services", href: "/#services" },
+  { label: "How It Works", href: "/#how" },
+  { label: "Coverage", href: "/#coverage" },
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -80,8 +81,8 @@ export default function Navbar({ session }: { session: any }) {
                   href={link.href}
                   className={cn(
                     "transition-all hover:translate-y-[-1px] tracking-wide",
-                    isActive 
-                      ? "text-[#00F5A0] underline underline-offset-8 decoration-2" 
+                    isActive
+                      ? "text-[#00F5A0] underline underline-offset-8 decoration-2"
                       : "text-white/60 hover:text-white"
                   )}
                 >
@@ -101,7 +102,7 @@ export default function Navbar({ session }: { session: any }) {
                     <LayoutDashboard size={18} /> Dashboard
                   </span>
                 </Link>
-                <Button 
+                <Button
                   onClick={handleLogout}
                   className="bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/20 font-black rounded-xl transition-all px-7 h-11"
                 >
@@ -167,7 +168,7 @@ export default function Navbar({ session }: { session: any }) {
                 <Link href="/dashboard" onClick={() => setMobileOpen(false)}>
                   <Button variant="outline" className="w-full h-16 font-bold border-white/10 text-white rounded-2xl text-lg bg-white/5">Dashboard</Button>
                 </Link>
-                <Button 
+                <Button
                   onClick={handleLogout}
                   className="w-full h-16 bg-red-500 text-white font-black rounded-2xl text-lg shadow-xl"
                 >

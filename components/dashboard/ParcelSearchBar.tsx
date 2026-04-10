@@ -47,6 +47,7 @@ export default function ParcelSearchBar({ initialSearchTerm }: { initialSearchTe
         onChange={(event) => setValue(event.target.value)}
         placeholder="Search Parcel ID or Title..."
         className="w-full bg-[#0b0b11] border border-white/5 rounded-2xl pl-14 pr-12 h-16 text-sm text-white outline-none focus:border-[#00F5A0]/30 focus:ring-1 focus:ring-[#00F5A0]/20 transition-all"
+        suppressHydrationWarning
       />
       {value && (
         <button

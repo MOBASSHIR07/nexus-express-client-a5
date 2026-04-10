@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useForm } from "@tanstack/react-form";
 import * as z from "zod";
@@ -33,7 +33,7 @@ export default function SignUpPage() {
     onSubmit: async ({ value }) => {
       const toastId = toast.loading("Creating your profile...");
       try {
-        // ✅ image upload আগে করো, তারপর string পাঠাও
+        // Upload image first, then send the string URL
         let imageUrl = "";
         if (value.profileImage) {
           imageUrl = await imageUpload(value.profileImage);

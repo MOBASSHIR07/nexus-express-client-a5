@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { Zap, ShieldCheck, Truck, ArrowRight } from "lucide-react";
@@ -6,19 +6,19 @@ import { Zap, ShieldCheck, Truck, ArrowRight } from "lucide-react";
 const features = [
   {
     title: "Lightning Fast",
-    description: "আমাদের এক্সপ্রেস ডেলিভারি সিস্টেমে আপনার পার্সেল পৌঁছাবে ২৪ ঘণ্টার মধ্যে।",
+    description: "Our express delivery system ensures your parcel arrives within 24 hours.",
     icon: <Zap size={32} />,
     color: "from-[#00F5A0] to-[#00D9F5]",
   },
   {
     title: "Secure Handling",
-    description: "প্রতিটি পার্সেল আমাদের কাছে আমানত। উন্নত প্যাকিং এবং সর্বোচ্চ নিরাপত্তা নিশ্চিত করি।",
+    description: "Every parcel is a trust we carry. We ensure premium packaging and maximum safety every step of the way.",
     icon: <ShieldCheck size={32} />,
     color: "from-[#F5A000] to-[#F5D900]",
   },
   {
     title: "Wide Coverage",
-    description: "গ্রাম থেকে শহর — বাংলাদেশের ৬৪টি জেলাতেই আমাদের ডেলিভারি নেটওয়ার্ক বিস্তৃত।",
+    description: "From rural areas to major cities — our delivery network spans all 64 districts of Bangladesh.",
     icon: <Truck size={32} />,
     color: "from-[#D9F500] to-[#00F5A0]",
   },
@@ -46,7 +46,7 @@ export default function Features() {
             Why Choose <span className="text-[#00F5A0]">Nexus Express?</span>
           </motion.h2>
           <p className="mt-4 text-white/40 font-medium max-w-xl mx-auto">
-            আমরা শুধু পার্সেল না, আপনার ভরসা পৌঁছে দেই সঠিক সময়ে।
+            We don't just deliver parcels — we deliver trust, right on time.
           </p>
         </div>
 

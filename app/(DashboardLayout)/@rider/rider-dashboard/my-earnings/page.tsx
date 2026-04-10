@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getRiderDashboardAction } from "@/actions/rider.action";
 export const dynamic = "force-dynamic";
 import { 
@@ -95,7 +95,7 @@ export default async function Page() {
                 <span className="text-xs text-gray-500 uppercase tracking-wider">Total Earnings</span>
               </div>
               <p className="text-3xl md:text-4xl font-bold text-white mb-1">
-                ৳{totalEarned.toLocaleString()}
+                ${totalEarned.toLocaleString()}
               </p>
               <p className="text-xs text-gray-500">Lifetime earnings</p>
             </div>
@@ -111,7 +111,7 @@ export default async function Page() {
                 <span className="text-xs text-gray-500 uppercase tracking-wider">Withdrawable</span>
               </div>
               <p className="text-3xl md:text-4xl font-bold text-white mb-1">
-                ৳{withdrawableBalance.toLocaleString()}
+                ${withdrawableBalance.toLocaleString()}
               </p>
               <p className="text-xs text-gray-500">Ready for withdrawal</p>
             </div>
@@ -127,7 +127,7 @@ export default async function Page() {
                 <span className="text-xs text-gray-500 uppercase tracking-wider">Pending</span>
               </div>
               <p className="text-3xl md:text-4xl font-bold text-white mb-1">
-                ৳{pendingWithdraw.toLocaleString()}
+                ${pendingWithdraw.toLocaleString()}
               </p>
               <p className="text-xs text-gray-500">Under processing</p>
             </div>
@@ -143,7 +143,7 @@ export default async function Page() {
                 <span className="text-xs text-gray-500 uppercase tracking-wider">Total Withdrawn</span>
               </div>
               <p className="text-3xl md:text-4xl font-bold text-white mb-1">
-                ৳{totalWithdrawn.toLocaleString()}
+                ${totalWithdrawn.toLocaleString()}
               </p>
               <p className="text-xs text-gray-500">Successfully paid out</p>
             </div>
@@ -189,15 +189,15 @@ export default async function Page() {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <span className="text-xs text-gray-400">Avg. per Delivery</span>
-                <span className="text-lg font-bold text-white">৳{averageEarningsPerDelivery}</span>
+                <span className="text-lg font-bold text-white">${averageEarningsPerDelivery}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-xs text-gray-400">Pending Payout</span>
-                <span className="text-lg font-bold text-amber-400">৳{pendingWithdraw.toLocaleString()}</span>
+                <span className="text-lg font-bold text-amber-400">${pendingWithdraw.toLocaleString()}</span>
               </div>
               <div className="flex justify-between items-center pt-2 border-t border-white/10">
                 <span className="text-xs text-gray-400">Net Received</span>
-                <span className="text-lg font-bold text-emerald-400">৳{totalWithdrawn.toLocaleString()}</span>
+                <span className="text-lg font-bold text-emerald-400">${totalWithdrawn.toLocaleString()}</span>
               </div>
             </div>
           </div>
@@ -210,10 +210,10 @@ export default async function Page() {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <span className="text-xs text-gray-400">Next Payout Goal</span>
-                <span className="text-lg font-bold text-white">৳{withdrawableBalance >= 1000 ? "Ready!" : "1,000"}</span>
+                <span className="text-lg font-bold text-white">${withdrawableBalance >= 1000 ? "Ready!" : "1,000"}</span>
               </div>
               <div className="pt-2">
-                <p className="text-xs text-gray-400 mb-2">Progress to ৳1,000</p>
+                <p className="text-xs text-gray-400 mb-2">Progress to $1,000</p>
                 <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-emerald-500 rounded-full transition-all"
@@ -241,7 +241,7 @@ export default async function Page() {
               {monthlyTrends.map((trend) => (
                 <div key={trend.month} className="p-4 rounded-xl bg-white/5 border border-white/10">
                   <p className="text-xs text-gray-400 mb-2">{trend.month}</p>
-                  <p className="text-xl font-bold text-white mb-1">৳{trend.amount.toLocaleString()}</p>
+                  <p className="text-xl font-bold text-white mb-1">${trend.amount.toLocaleString()}</p>
                   <p className="text-xs text-gray-500">{trend.count} withdrawal{trend.count !== 1 ? 's' : ''}</p>
                 </div>
               ))}
@@ -280,7 +280,7 @@ export default async function Page() {
                         })}
                       </td>
                       <td className="px-6 py-4 text-sm font-semibold text-white">
-                        ৳{parseFloat(item.amount).toLocaleString()}
+                        ${parseFloat(item.amount).toLocaleString()}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-400">{item.method}</td>
                       <td className="px-6 py-4 text-sm font-mono text-gray-400">{item.accountNumber}</td>

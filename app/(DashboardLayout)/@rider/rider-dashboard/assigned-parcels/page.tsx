@@ -105,7 +105,7 @@ export default async function AssignedParcelsPage(props: {
                         <h3 className="text-xl font-bold mb-1">{parcel.title || "Parcel"}</h3>
                         <div className="flex gap-4 text-xs text-gray-400">
                           <Badge variant="outline" className="font-mono">{parcel.trackingCode}</Badge>
-                          <span className="text-emerald-400 font-bold">৳{parcel.price}</span>
+                          <span className="text-emerald-400 font-bold">${parcel.price}</span>
                         </div>
                       </div>
                     </div>
