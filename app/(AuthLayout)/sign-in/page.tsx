@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useForm } from "@tanstack/react-form";
 import * as z from "zod";
@@ -25,7 +25,7 @@ export default function SignInPage() {
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/dashboard", // redirect after login
+        callbackURL: `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/get-session-token?redirect=${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
       });
     } catch (error) {
       console.error("Google Login Error:", error);
