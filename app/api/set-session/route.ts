@@ -24,6 +24,15 @@ export async function POST(request: NextRequest) {
       maxAge: 604800, // 7 days
     });
 
+    // Also set 'auth_session' which is used by this project's server-side userService
+    cookieStore.set("auth_session", token, {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 604800, // 7 days
+    });
+
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Set Session Error:", error);
