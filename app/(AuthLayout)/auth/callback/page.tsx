@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
-export default function AuthCallbackPage() {
+function AuthCallback() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -73,5 +73,19 @@ export default function AuthCallbackPage() {
         Establishing Secure Session...
       </p>
     </div>
+  );
+}
+
+export default function AuthCallbackPage() {
+  return (
+    <Suspense 
+      fallback={
+        <div className="min-h-screen bg-[#06060b] flex flex-col items-center justify-center text-white p-6">
+          <Loader2 className="h-12 w-12 text-[#00F5A0] animate-spin" />
+        </div>
+      }
+    >
+      <AuthCallback />
+    </Suspense>
   );
 }
