@@ -1,4 +1,4 @@
-﻿/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { adminService } from "@/service/admin.service";
 import { assignRiderAction } from "@/actions/admin.action";
 import { 
@@ -22,7 +22,8 @@ export default async function AllParcelsPage() {
       const district = parcel.pickupDistrict || "";
       const riderRes = await adminService.getAllRiders({ 
         district: district, 
-        isApproved: 'true' 
+        isApproved: 'true',
+        isAvailable: 'true' // Request only riders without active/pending tasks
       });
 
       return {
@@ -151,8 +152,8 @@ export default async function AllParcelsPage() {
                       </select>
                       
                       {parcel.availableRiders.length === 0 && (
-                        <p className="text-[9px] text-red-500/50 font-black uppercase text-center tracking-tighter">
-                          No active riders in {parcel.pickupDistrict || "this area"}
+                        <p className="text-[9px] text-amber-500/70 font-black uppercase text-center tracking-tighter bg-amber-500/5 py-2 rounded-lg border border-amber-500/10 mb-2">
+                           All local riders are currently busy
                         </p>
                       )}
 

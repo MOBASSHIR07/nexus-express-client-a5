@@ -57,6 +57,7 @@ export const updateParcelStatusAction = async (formData: FormData) => {
     const result = await riderService.updateParcelStatus({ parcelId, status: status as UpdateStatusPayload["status"] });
     if (result?.success) {
       revalidatePath("/rider-dashboard/active-deliveries");
+      revalidatePath("/rider-dashboard/assigned-parcels");
     }
     return result;
   } catch (error) {

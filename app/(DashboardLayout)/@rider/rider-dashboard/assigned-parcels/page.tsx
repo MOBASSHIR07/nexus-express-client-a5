@@ -1,4 +1,4 @@
-﻿/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getMyParcelsAction, respondParcelAction, updateParcelStatusAction } from "@/actions/rider.action";
 import { 
   Package, ChevronLeft, ChevronRight, Truck, PackageCheck, 
@@ -22,6 +22,7 @@ const getStatusConfig = (status: string) => {
     DELIVERED: { label: "Delivered", bgClass: "bg-emerald-500/10", textClass: "text-emerald-400" },
     IN_TRANSIT: { label: "In Transit", bgClass: "bg-blue-500/10", textClass: "text-blue-400" },
     PICKED_UP: { label: "Picked Up", bgClass: "bg-sky-500/10", textClass: "text-sky-400" },
+    ACCEPTED: { label: "Accepted", bgClass: "bg-purple-500/10", textClass: "text-purple-400" },
     RIDER_ASSIGNED: { label: "New Request", bgClass: "bg-purple-500/10", textClass: "text-purple-400" },
     PENDING: { label: "Pending", bgClass: "bg-amber-500/10", textClass: "text-amber-400" }
   };
@@ -134,6 +135,14 @@ export default async function AssignedParcelsPage(props: {
                           <Button type="submit" variant="outline" className="border-red-500/30 text-red-400 hover:bg-red-500/10 rounded-xl">Decline</Button>
                         </form>
                       </>
+                    ) : parcel.deliveryStatus === "ACCEPTED" ? (
+                      <form action={updateParcelStatusAction}>
+                        <input type="hidden" name="parcelId" value={parcel.id} />
+                        <input type="hidden" name="status" value="PICKED_UP" />
+                        <Button type="submit" className="bg-sky-600 hover:bg-sky-700 rounded-xl px-8 flex items-center gap-2">
+                           <PackageCheck size={18} /> Mark as Picked Up
+                        </Button>
+                      </form>
                     ) : (
                       <>
                         <Link href={`/track/${parcel.trackingCode}`}>
@@ -151,7 +160,7 @@ export default async function AssignedParcelsPage(props: {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="bg-gray-900 border-white/10 text-white rounded-xl p-2 min-w-[180px]">
                               
-                              {parcel.deliveryStatus !== "IN_TRANSIT" && (
+                              {parcel.deliveryStatus === "PICKED_UP" && (
                                 <DropdownMenuItem asChild className="hover:bg-white/10 cursor-pointer">
                                   <form action={updateParcelStatusAction} className="w-full">
                                     <input type="hidden" name="parcelId" value={parcel.id} />
@@ -163,15 +172,17 @@ export default async function AssignedParcelsPage(props: {
                                 </DropdownMenuItem>
                               )}
 
-                              <DropdownMenuItem asChild className="hover:bg-white/10 cursor-pointer">
-                                <form action={updateParcelStatusAction} className="w-full">
-                                  <input type="hidden" name="parcelId" value={parcel.id} />
-                                  <input type="hidden" name="status" value="DELIVERED" />
-                                  <button type="submit" className="w-full text-left p-2 text-emerald-400 font-bold">
-                                     Mark as DELIVERED
-                                  </button>
-                                </form>
-                              </DropdownMenuItem>
+                              {parcel.deliveryStatus === "IN_TRANSIT" || parcel.deliveryStatus === "PICKED_UP" ? (
+                                <DropdownMenuItem asChild className="hover:bg-white/10 cursor-pointer">
+                                  <form action={updateParcelStatusAction} className="w-full">
+                                    <input type="hidden" name="parcelId" value={parcel.id} />
+                                    <input type="hidden" name="status" value="DELIVERED" />
+                                    <button type="submit" className="w-full text-left p-2 text-emerald-400 font-bold">
+                                       Mark as DELIVERED
+                                    </button>
+                                  </form>
+                                </DropdownMenuItem>
+                              ) : null}
 
                             </DropdownMenuContent>
                           </DropdownMenu>

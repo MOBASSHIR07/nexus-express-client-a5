@@ -1,4 +1,4 @@
-﻿/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getMyParcelsAction } from "@/actions/rider.action"; 
 import { Package, Truck, MapPin, Navigation, Clock, CheckCircle2, PackageCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -6,13 +6,14 @@ import ParcelSearchBar from "@/components/dashboard/ParcelSearchBar";
 
 export const dynamic = "force-dynamic";
 
-const activeStatuses = ["PICKED_UP", "IN_TRANSIT", "RIDER_ASSIGNED"]; 
+const activeStatuses = ["PICKED_UP", "IN_TRANSIT", "RIDER_ASSIGNED", "ACCEPTED"]; 
 
 const getStatusConfig = (status: string) => {
   const configs = {
     PICKED_UP: { icon: PackageCheck, label: "Picked Up", bgClass: "bg-sky-500/10", textClass: "text-sky-400" },
     IN_TRANSIT: { icon: Truck, label: "In Transit", bgClass: "bg-blue-500/10", textClass: "text-blue-400" },
-    RIDER_ASSIGNED: { icon: Clock, label: "Accepted", bgClass: "bg-purple-500/10", textClass: "text-purple-400" },
+    ACCEPTED: { icon: CheckCircle2, label: "Accepted", bgClass: "bg-purple-500/10", textClass: "text-purple-400" },
+    RIDER_ASSIGNED: { icon: Clock, label: "Request Sent", bgClass: "bg-amber-500/10", textClass: "text-amber-400" },
     PENDING: { icon: Clock, label: "Pending", bgClass: "bg-amber-500/10", textClass: "text-amber-400" }
   };
   return configs[status as keyof typeof configs] || configs.PENDING;
