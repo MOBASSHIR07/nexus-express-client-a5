@@ -1,13 +1,17 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { CheckCircle2, Package, ArrowRight, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function PaymentSuccessClient() {
-  const searchParams = useSearchParams();
-  const parcelId = searchParams.get("parcelId");
+  const [parcelId, setParcelId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setParcelId(params.get("parcelId"));
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#06060b] flex items-center justify-center p-6">
@@ -54,4 +58,4 @@ export default function PaymentSuccessClient() {
       </div>
     </div>
   );
-}
+}

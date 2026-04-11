@@ -6,25 +6,27 @@ export async function POST(request: NextRequest) {
     const { token } = await request.json();
 
     if (!token) {
-      return NextResponse.json({ success: false, message: "Token is required" }, { status: 400 });
+      return NextResponse.json({ ok: false }, { status: 400 });
     }
 
-    const cookieName = process.env.NODE_ENV === "production" 
-      ? "__Secure-better-auth.session_token" 
+    const cookieStore = await cookies();
+    const isProduction = process.env.NODE_ENV === "production";
+
+    const cookieName = isProduction
+      ? "__Secure-better-auth.session_token"
       : "better-auth.session_token";
 
-    const cookieStore = await cookies();
     cookieStore.set(cookieName, token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: isProduction,
       sameSite: "lax",
       path: "/",
-      maxAge: 60 * 60 * 24 * 7, // 7 days
+      maxAge: 604800, // 7 days
     });
 
-    return NextResponse.json({ success: true, message: "Session set successfully" });
+    return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Set Session Error:", error);
-    return NextResponse.json({ success: false, message: "Internal server error" }, { status: 500 });
+    return NextResponse.json({ ok: false }, { status: 500 });
   }
 }

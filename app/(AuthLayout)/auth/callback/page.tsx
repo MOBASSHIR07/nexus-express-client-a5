@@ -1,18 +1,19 @@
 "use client";
 
-import { useEffect, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
-function AuthCallback() {
+export default function AuthCallbackPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     async function handleAuth() {
-      const token = searchParams.get("token");
+      // Using window.location.search to avoid Next.js useSearchParams suspense requirement
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token");
 
       if (!token) {
         toast.error("Authentication failed: No token found.");
@@ -61,7 +62,7 @@ function AuthCallback() {
     }
 
     handleAuth();
-  }, [router, searchParams]);
+  }, [router]);
 
   return (
     <div className="min-h-screen bg-[#06060b] flex flex-col items-center justify-center text-white p-6">
@@ -73,19 +74,5 @@ function AuthCallback() {
         Establishing Secure Session...
       </p>
     </div>
-  );
-}
-
-export default function AuthCallbackPage() {
-  return (
-    <Suspense 
-      fallback={
-        <div className="min-h-screen bg-[#06060b] flex flex-col items-center justify-center text-white p-6">
-          <Loader2 className="h-12 w-12 text-[#00F5A0] animate-spin" />
-        </div>
-      }
-    >
-      <AuthCallback />
-    </Suspense>
   );
 }
