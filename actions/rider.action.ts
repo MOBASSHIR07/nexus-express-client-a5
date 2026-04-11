@@ -1,4 +1,4 @@
-﻿/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
 import { revalidatePath } from "next/cache";
@@ -95,12 +95,12 @@ export const createWithdrawAction = async (formData: FormData) => {
 
 export const getMyParcelsAction = async (query: Record<string, any>) => {
   try {
-   
+
     const result = await riderService.getAssignedParcels(query);
-    
-  
-    console.log("RIDER_PARCEL_DATA:", result); 
-    
+
+
+    console.log("RIDER_PARCEL_DATA:", result);
+
     return result;
   } catch (error) {
     console.error("RIDER_PARCEL_FETCH_ERROR:", error);

@@ -46,9 +46,10 @@ export default function ApplyRiderPage() {
 
   const regions = useMemo(() => [...new Set(coverageData.map(d => d.region))], []);
   const districts = useMemo(() => {
-    return coverageData
+    const list = coverageData
       .filter(d => d.region === selectedRegion)
       .map(d => d.district);
+    return [...new Set(list)];
   }, [selectedRegion]);
 
   const onSubmit = async (values: ApplyRiderValues) => {
