@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Phone, MapPin, Truck, Loader2, ArrowRight, ShieldCheck } from "lucide-react";
 import Link from "next/link";
+import coverageData from "@/data/coverage.json";
 
 const applyRiderSchema = z.object({
   rider: z.object({
@@ -27,6 +28,7 @@ export default function ApplyRiderPage() {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<ApplyRiderValues>({
     resolver: zodResolver(applyRiderSchema),
@@ -39,6 +41,15 @@ export default function ApplyRiderPage() {
       },
     },
   });
+
+  const selectedRegion = watch("rider.region");
+
+  const regions = useMemo(() => [...new Set(coverageData.map(d => d.region))], []);
+  const districts = useMemo(() => {
+    return coverageData
+      .filter(d => d.region === selectedRegion)
+      .map(d => d.district);
+  }, [selectedRegion]);
 
   const onSubmit = async (values: ApplyRiderValues) => {
     setIsSubmitting(true);
@@ -94,33 +105,38 @@ export default function ApplyRiderPage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="grid gap-2">
-                <label className="text-sm uppercase tracking-[0.3em] text-white/40">District</label>
-                <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#020617]/80 px-4 py-3">
-                  <MapPin size={18} className="text-[#00F5A0]" />
-                  <input
-                    type="text"
-                    placeholder="Example: Dhaka"
-                    {...register("rider.district")}
-                    className="w-full bg-transparent outline-none text-white placeholder:text-white/30"
-                    suppressHydrationWarning
-                  />
-                </div>
-                {errors.rider?.district && <p className="text-xs text-red-400">{errors.rider.district.message}</p>}
-              </div>
-
-              <div className="grid gap-2">
                 <label className="text-sm uppercase tracking-[0.3em] text-white/40">Region</label>
                 <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#020617]/80 px-4 py-3">
                   <Truck size={18} className="text-[#00F5A0]" />
-                  <input
-                    type="text"
-                    placeholder="Example: Dhaka Division"
+                  <select
                     {...register("rider.region")}
-                    className="w-full bg-transparent outline-none text-white placeholder:text-white/30"
-                    suppressHydrationWarning
-                  />
+                    className="w-full bg-transparent outline-none text-white appearance-none cursor-pointer [&>option]:bg-[#0b0b19]"
+                  >
+                    <option value="" disabled>Select Region</option>
+                    {regions.map(r => (
+                      <option key={r} value={r}>{r}</option>
+                    ))}
+                  </select>
                 </div>
                 {errors.rider?.region && <p className="text-xs text-red-400">{errors.rider.region.message}</p>}
+              </div>
+
+              <div className="grid gap-2">
+                <label className="text-sm uppercase tracking-[0.3em] text-white/40">District</label>
+                <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#020617]/80 px-4 py-3">
+                  <MapPin size={18} className="text-[#00F5A0]" />
+                  <select
+                    {...register("rider.district")}
+                    disabled={!selectedRegion}
+                    className="w-full bg-transparent outline-none text-white appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed [&>option]:bg-[#0b0b19]"
+                  >
+                    <option value="" disabled>Select District</option>
+                    {districts.map(d => (
+                      <option key={d} value={d}>{d}</option>
+                    ))}
+                  </select>
+                </div>
+                {errors.rider?.district && <p className="text-xs text-red-400">{errors.rider.district.message}</p>}
               </div>
             </div>
 
