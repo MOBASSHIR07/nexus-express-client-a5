@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "@tanstack/react-form";
+import { FcGoogle } from "react-icons/fc";
 import * as z from "zod";
 import { Mail, Lock, Loader2, ArrowRight, Globe } from "lucide-react"; // Globe আইকন যোগ করা হয়েছে
 import Link from "next/link";
@@ -71,7 +72,7 @@ export default function SignInPage() {
           variant="outline"
           className="w-full h-14 bg-white/5 border-white/10 rounded-2xl font-bold text-white hover:bg-white/10 active:scale-95 transition-all flex items-center justify-center gap-3 mb-6"
         >
-          <Globe size={18} className="text-[#00F5A0]" />
+        <FcGoogle className="h-4 w-4 mr-2" />
           <span className="uppercase text-[10px] tracking-widest font-black">Continue with Google</span>
         </Button>
 
