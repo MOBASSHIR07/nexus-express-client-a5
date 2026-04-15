@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚚 Nexus Express: Premium Logistics & Parcel Management Ecosystem
 
-## Getting Started
+**Live Link**: [https://nexus-express-frontend-a5.vercel.app/](https://nexus-express-frontend-a5.vercel.app/)
 
-First, run the development server:
+### 🔑 Admin Credentials
+- **Email**: `admin@nexus.com`
+- **Password**: `password123`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Nexus Express is a sophisticated, full-stack logistics and parcel delivery platform designed to bridge the gap between senders and delivery professionals (Riders). 
+
+Built with a **Security-First** mindset, it features a custom RBAC (Role-Based Access Control) architecture and a high-performance **"Industrial-Glass"** premium UI.
+
+## 📌 Project Summary
+Nexus Express is not just a delivery app; it's a complete logistical business management suite.
+
+### 👥 Senders
+- **Seamless Booking**: Interactive parcel booking with weight-based intelligent costing.
+- **Live Tracking**: Monitor parcel status transitions in real-time.
+- **History**: Comprehensive dashboard for all past and current shipments.
+
+### 🚴 Riders
+- **Task Center**: A dedicated "Rider Command" dashboard to accept and manage deliveries.
+- **Workflow Control**: Step-by-step status updates (Accepted -> Picked Up -> Delivered).
+- **Earnings Vault**: Track total earnings and manage professional withdrawals.
+
+### 🛠️ Admins
+- **Global Oversight**: Manage the entire lifecycle of parcels across the system.
+- **User Management**: Control user statuses (Active/Restricted).
+- **System Flux**: Monitor overall system efficiency and transactional health.
+
+## 📂 Project Structure
+```text
+├── actions/
+│   ├── admin.action.ts       # Administrative mutations
+│   ├── auth.action.ts        # Security & Authentication actions
+│   ├── parcel.action.ts      # Core parcel lifecycle logic
+│   └── rider.action.ts       # Rider-specific operational actions
+├── components/
+│   ├── dashboard/            # Role-agnostic dashboard primitives
+│   ├── modules/              # Feature-specific high-level modules
+│   ├── parcel/               # Specialized parcel UI components
+│   ├── shared/               # Global components (Logo, Nav, etc.)
+│   └── ui/                   # Shadcn base primitives
+├── app/
+│   ├── (AuthLayout)/         # Secured Identity layer
+│   │   ├── sign-in/          # Credential entrance
+│   │   └── sign-up/          # Account provision
+│   ├── (DashboardLayout)/    # Premium RBAC Layout
+│   │   ├── @admin/           # Administrative Slot
+│   │   ├── @rider/           # Logistics Professional Slot
+│   │   └── @sender/          # Customer/Sender Slot
+│   ├── (CommonLayout)/       # Public Discovery layer
+│   │   └── track/            # Global Tracking Protocol
+│   ├── layout.tsx            # Root Configuration
+│   └── globals.css           # Industrial Design System
+├── service/
+│   ├── admin.service.ts      # Core Admin business logic
+│   ├── parcel.service.ts     # Logistical engine
+│   ├── rider.service.ts      # Earnings & Task logic
+│   └── user.service.ts       # Unified Identity service
+├── lib/
+│   ├── auth-client.ts        # Better-Auth configuration
+│   └── utils.ts              # Global utility ecosystem
+├── proxy.ts                  # Security Middleware Interceptor
+└── env.ts                    # Type-safe environment validation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Tech Stack
+| Layer | Technology |
+| :--- | :--- |
+| **Framework** | Next.js 15.x (App Router) |
+| **Language** | TypeScript (Strict Mode) |
+| **Styling** | Tailwind CSS 4 + Lucide Icons + Sonner (Toasts) |
+| **Authentication** | Better-Auth (Session-based via Secure Cookies) |
+| **Form Handling** | TanStack Form + Zod Validation |
+| **State Management** | Next.js Server Actions (UI Sync) + Server-side Session |
+| **Maps & Tracking** | Leaflet + React Leaflet Interface |
+| **Environment** | @t3-oss/env-nextjs |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔐 Architecture & Security Model
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🔑 RBAC (Role-Based Access Control) Flow
+The application implements a strict security matrix using a internal **Proxy Pattern (`proxy.ts`)**.
 
-## Learn More
+- **🛡️ Session Validation**: Every protected request is intercepted and validated against the backend using the `auth_session` token.
+- **🔀 Parallel Route Guarding**: The `(DashboardLayout)` utilizes Next.js Parallel Routes. It checks the authenticated user's role and renders ONLY the authorized slot (`@admin`, `@rider`, or `@sender`), preventing exposure of unrelated UI code.
+- **⚙️ Action Security**: Server Actions re-verify session cookies before executing database mutations, ensuring 100% server-side integrity.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔄 Lifecycle & Role Functionality
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 1. 👤 The Logistics User (Sender)
+- **🔍 Discovery**: Accesses the global tracking interface for instant updates.
+- **📦 Booking Integrity**: Multi-step booking process with real-time feedback.
+- **📊 History**: Monitors the lifecycle of their parcels from "Pending" to "Delivered".
 
-## Deploy on Vercel
+### 2. 🏪 The Fullfillment Flow (Rider)
+- **🧾 Identity**: Manage professional profile and delivery preferences.
+- **⚙️ Management**: Use "Task Management" console to accept parcels.
+- **💰 Earnings**: Integrated withdrawal system to manage payouts and track financial performance.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 3. 🛠️ The Oversight Flow (Admin)
+- **👥 User Directory**: Full visibility of the platform's user base.
+- **🍽️ Parcel Flux**: Global view of all logistical transactions to monitor revenue and bottlenecks.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🚀 Performance & Optimization
+- **⚡ Parallel Data Fetching**: Dashboard slots fetch data independently, preventing blocking across different role modules.
+- **⚡ Component Level Loading**: Integrated `loading.tsx` and custom `Loader.tsx` for instant visual feedback.
+- **🖼️ Asset Precision**: Optimized images using Next.js `next/image` with specific security remote patterns.
+
+## 🚀 Future Roadmap & Scalability
+1. **💳 Payment Integration**: Move from "Manual/COD" to automated digital payments (SSL Commerz/Stripe).
+2. **📍 Real-Time Geolocation**: Advanced Google Maps integration for live rider location tracking.
+3. **📊 Analytics Suite**: Visual representation of logistical trends and performance heatmaps.
+
+---
+
+## 🚀 Installation & Deployment
+1. **Clone & Install**:
+   ```bash
+   git clone https://github.com/MOBASSHIR07/nexus_express_frontend_a5.git
+   npm install
+   ```
+2. **Environment Configuration**:
+   Create a `.env` file with `BACKEND_URL`, `BETTER_AUTH_SECRET`, and `NEXT_PUBLIC_IMGBB_API_KEY`.
+3. **Launch**:
+   ```bash
+   npm run dev
+   ```
+
+---
+*Built with ❤️ by [Mobasshir07](https://github.com/MOBASSHIR07)*
