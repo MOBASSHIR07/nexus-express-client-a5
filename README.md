@@ -1,6 +1,6 @@
 # 🚚 Nexus Express: Premium Logistics & Parcel Management Ecosystem
 
-**Live Link**: [https://nexus-express-frontend-a5.vercel.app/](https://nexus-express-frontend-a5.vercel.app/)
+**Live Link**:https://nexus-express-client-a5.vercel.app/
 
 ### 🔑 Admin Credentials
 - **Email**: `admin@nexus.com`
